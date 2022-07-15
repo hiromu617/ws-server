@@ -11,7 +11,7 @@ get '/' do
   json status: 'ok'
 end
 
-get '/websocket' do
+get '/ws' do
   if request.websocket?
     request.websocket do |ws|
       ws.onopen do
@@ -26,5 +26,7 @@ get '/websocket' do
         settings.sockets.delete(ws)
       end
     end
+  else
+    json message: 'not websocket request'
   end
 end
